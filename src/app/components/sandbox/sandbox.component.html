@@ -1,0 +1,66 @@
+
+<h1 class="special">Hello World from the HTML file</h1>
+<h1><span *ngIf="showName">{{ name }}</span> is {{ age }} years old.</h1>
+
+<h1>Hello <span *ngIf="showName; else noName">{{ name }}</span></h1>
+<ng-template #noName >World</ng-template>
+
+<p>Hello {{ showName ? name : 'World' }}</p>
+<div [style.font-size]="isSpecial ? '60px' : '20px' ">
+  Font size depends on isSpecial
+</div>
+<hr>
+
+<div [ngSwitch]="greeting">
+  <div *ngSwitchCase="'1'">Hello World</div>
+  <div *ngSwitchCase="'2'">Hi There</div>
+  <div *ngSwitchCase="'3'">What's Up</div>
+  <div *ngSwitchDefault >Hello</div>
+</div>
+
+<!-- 3 ways to bind properties -->
+<div><img src="{{ imageUrl }}"></div>
+<!-- here you can use booleans as well -->
+<!--<div><img [src]="imageUrl"></div>
+<div><img bind-src="imageUrl"></div>
+
+<h4>Image Location: <span [textContent]="imageUrl" ></span></h4> -->
+
+<h2>Create Post</h2>
+<p [hidden]="isUnchanged">Post has been changed, please save.</p>
+<button [disabled]="isUnchanged">Save</button>
+
+<h4 [class.special]="isSpecial">This class binding is special.</h4>
+<h4 [ngClass]="currentClasses">This div is initialy special and saveable.</h4>
+
+<div [ngStyle]="currentStyles" >This div is initially saveable and special.</div>
+
+<p>My birthday is {{ birthday | date }}</p>
+
+<p>My birthday is {{ birthday | date:"MM-dd-yyyy" }}</p>
+
+<p>I was born in {{ birthday | date:"yyyy"}}</p>
+<p>I love {{ 'chocolate' | uppercase }}</p>
+
+<p>Your total is {{ total | currency:"GBP":"1" }}.</p>
+<p>Our fee is {{ fee | percent }}</p>
+
+<hr>
+
+<h2>My name is {{ person.firstName }}  {{ person.lastName }}.</h2>
+<ul>
+  <li>{{ 'Hello World' }}</li>
+  <li>{{ 1 + 1}}</li>
+  <li>{{ showAge()}}</li>
+</ul>
+<ul>
+  <li *ngFor="let person of people; let i = index">
+    {{ i + 1}} - {{ person }}
+  </li>
+</ul>
+
+<ul>
+  <li *ngFor="let person of people2; let i = index">
+    {{ i + 1}} - {{ person.firstName }} {{ person.lastName}}
+  </li>
+</ul>

@@ -1,0 +1,113 @@
+<div class="container">
+  <form novalidate #f="ngForm" (ngSubmit)="onNgSubmit(f)">
+    <div class="form-group">
+      <label >Name</label>
+      <input type="text"
+            class="form-control"
+            [(ngModel)]="user.name"
+            name="name"
+            #userName="ngModel"
+            minlength="2"
+            required>
+      <div *ngIf="userName.errors?.required && userName.touched" class="alert alert-danger">
+        Name is required.
+      </div>
+      <div *ngIf="userName.errors?.minlength && userName.touched" class="alert alert-danger">
+        Name should be at least 2 characters.
+      </div>
+    </div>
+    <div class="form-group">
+      <label >Email</label>
+      <input type="text"
+            class="form-control"
+            [(ngModel)]="user.email"
+            name="email"
+            #userEmail="ngModel"
+            required>
+        <div *ngIf="userEmail.errors?.required && userEmail.touched" class="alert alert-danger">
+          Email is required.
+        </div>
+    </div>
+    <div class="form-group">
+      <label >Phone</label>
+      <input type="text"
+            class="form-control"
+            [(ngModel)]="user.phone"
+            name="phone"
+            #userPhone="ngModel"
+            minlength="10">
+      <div *ngIf="userPhone.errors?.minlength && userPhone.touched" class="alert alert-danger">
+        Enter a valid phone number.
+      </div>
+    </div>
+    <input type="submit" class="btn btn-default" value="submit" >
+  </form>
+  <hr>
+
+  <form (submit)="onSubmit()">
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" class="form-control" [(ngModel)]="name" name="name">
+    </div>
+    <input type="submit" class="btn btn-primary" value="submit">
+  </form>
+  <hr>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let user of users; let i = index;">
+      {{ user }}
+    </li>
+  </ul>
+  <hr>
+
+  <form>
+    <div class="form-group">
+      <label >Name</label>
+      <input type="text" class="form-control" [(ngModel)]="name" name="name">
+    </div>
+    <div class="form-group">
+      <label >Age</label>
+      <input type="number" class="form-control" [(ngModel)]="age" name="age">
+    </div>
+    <input type="submit" value="submit" class="btn btn-success">
+  </form>
+  <h4>Name: {{ name }}</h4>
+  <h4>Age: {{ age }}</h4>
+  <hr>
+
+
+  <button class="btn btn-secondary" id="btn" (click)="fireEvent($event)">Cick Event</button>
+  <hr>
+  <button class="btn btn-secondary" id="btn" (mouseover)="fireEvent($event)">Mouseover Event</button>
+  <hr>
+  <button class="btn btn-secondary" id="btn" (mousedown)="fireEvent($event)">Mousedown Event</button>
+  <hr>
+  <button class="btn btn-secondary" id="btn" (mouseup)="fireEvent($event)">Mouseup Event</button>
+  <hr>
+  <button class="btn btn-secondary" id="btn" (dblclick)="fireEvent($event)">Double Click Event</button>
+  <hr>
+  <div class="drag" (drag)="fireEvent($event)">Drag Event</div>
+  <hr>
+  <div class="drag" (dragover)="fireEvent($event)">Drag Over Event</div>
+  <hr>
+  <button class="btn btn-secondary" (click)="changeValue()">Change Value</button>
+  <div *ngIf="value">
+    <h1>{{ text }}</h1>
+  </div>
+  <hr>
+  <input type="text" (keyup)="fireEvent($event)" placeholder="keyup event">
+  <hr>
+  <input type="text" (keydown)="fireEvent($event)" placeholder="key down event">
+  <hr>
+  <input type="text" (focus)="fireEvent($event)" placeholder="focus event">
+  <hr>
+  <input type="text" (blur)="fireEvent($event)" placeholder="blue event">
+  <hr>
+  <input type="text" (cut)="fireEvent($event)" placeholder="cut event">
+  <hr>
+  <input type="text" (copy)="fireEvent($event)" placeholder="copy event">
+  <hr>
+  <input type="text" (paste)="fireEvent($event)" placeholder="paste event">
+  <hr>
+  <input type="text" (keyup)="changeText($event)" placeholder="Change text" value={{text}}>
+  <h2>{{ text }}</h2>
+</div>
